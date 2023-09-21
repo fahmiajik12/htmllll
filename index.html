@@ -6,14 +6,6 @@
 <body>
     <h1>Praktikum Multimedia - Modul 2</h1>
 
-    <h2>Kemampuan Akhir yang Diharapkan</h2>
-    <ul>
-        <li>Memahami definisi multimedia, bentuk-bentuk multimedia, bentuk video dan audio</li>
-        <li>Mengujicobakan dan mendiskusikan program HTML yang ada dalam teori tentang HTML audio, video, dan YouTube pada web serta API.</li>
-        <li>Mampu membuat suatu program singkat yang menggunakan audio, video, dan YouTube</li>
-        <li>Membuat dan menjelaskan tugas yang diberikan</li>
-    </ul>
-
     <h2>HTML Audio and Video</h2>
     <h3>HTML Audio</h3>
     <audio controls>
@@ -23,9 +15,9 @@
     </audio>
 
     <h3>HTML Video</h3>
-    <video width="400" controls>
-        <source src="vidio.mp4" type="video/mp4">
-        <source src="vidio.mp4" type="video/ogg">
+    <video id="video1" width="420" controls>
+        <source src="mov_bbb.mp4" type="video/mp4">
+        <source src="mov_bbb.mp4" type="video/ogg">
         Your browser does not support HTML video.
     </video>
 
@@ -37,7 +29,36 @@
     <button onclick="getLocation()">Try It</button>
     <p id="demo"></p>
 
+    <div style="text-align:center">
+        <button onclick="playPause()">Play/Pause</button>
+        <button onclick="makeBig()">Big</button>
+        <button onclick="makeSmall()">Small</button>
+        <button onclick="makeNormal()">Normal</button>
+    </div>
+
     <script>
+        var video = document.getElementById("video1");
+
+        function playPause() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function makeBig() {
+            video.width = 640;
+        }
+
+        function makeSmall() {
+            video.width = 420;
+        }
+
+        function makeNormal() {
+            video.width = 560;
+        }
+
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
@@ -45,6 +66,7 @@
                 document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
             }
         }
+
         function showPosition(position) {
             document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
         }
