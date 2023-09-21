@@ -17,9 +17,6 @@
             Your browser does not support the audio element.
         </audio>
         <button onclick="audioPlayPause()">Play/Pause</button>
-        <button onclick="audioMakeBig()">Big</button>
-        <button onclick="audioMakeSmall()">Small</button>
-        <button onclick="audioMakeNormal()">Normal</button>
     </div>
 
     <h3>HTML Video</h3>
@@ -36,8 +33,11 @@
     </div>
 
     <h2>HTML YouTube Videos</h2>
-    <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0"
-        allowfullscreen></iframe>
+    <div style="text-align:center">
+        <iframe id="youtubeVideo" width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY"
+            frameborder="0" allowfullscreen></iframe>
+        <button onclick="youtubePlayPause()">Play/Pause</button>
+    </div>
 
     <h2>HTML Geolocation API</h2>
     <p>Click the button to get your coordinates.</p>
@@ -47,6 +47,7 @@
     <script>
         var audio = document.getElementById("audio1");
         var video = document.getElementById("video1");
+        var youtubeVideo = document.getElementById("youtubeVideo");
 
         function audioPlayPause() {
             if (audio.paused) {
@@ -87,6 +88,20 @@
         function videoMakeNormal() {
             video.width = 560;
         }
+
+        function youtubePlayPause() {
+    var iframe = youtubeVideo;
+    var iframeSrc = iframe.src;
+    if (iframeSrc.indexOf("youtube.com") !== -1) {
+        if (iframeSrc.indexOf("enablejsapi=1") === -1) {
+            iframeSrc += (iframeSrc.indexOf("?") === -1 ? "?" : "&") + "enablejsapi=1";
+            iframe.src = iframeSrc;
+        }
+        if (iframe.contentWindow.postMessage) {
+            iframe.contentWindow.postMessage('{"event":"command","func":"' + (iframe.paused ? 'playVideo' : 'pauseVideo') + '","args":""}', '*');
+        }
+    }
+}
 
         function getLocation() {
             if (navigator.geolocation) {
