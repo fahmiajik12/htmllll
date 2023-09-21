@@ -1,45 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Praktikum Multimedia Modul 2</title>
 </head>
+
 <body>
     <h1>Praktikum Multimedia - Modul 2</h1>
 
     <h2>HTML Audio and Video</h2>
     <h3>HTML Audio</h3>
-    <audio controls>
-        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
-        <source src="audio.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div style="text-align:center">
+        <audio id="audio1" controls>
+            <source src="audio.mp3" type="audio/ogg">
+            <source src="audio.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="audioPlayPause()">Play/Pause</button>
+        <button onclick="audioMakeBig()">Big</button>
+        <button onclick="audioMakeSmall()">Small</button>
+        <button onclick="audioMakeNormal()">Normal</button>
+    </div>
 
     <h3>HTML Video</h3>
-    <video id="video1" width="420" controls>
-        <source src="mov_bbb.mp4" type="video/mp4">
-        <source src="mov_bbb.mp4" type="video/ogg">
-        Your browser does not support HTML video.
-    </video>
+    <div style="text-align:center">
+        <video id="video1" width="420" controls>
+            <source src="vidio.mp4" type="video/mp4">
+            <source src="vidio.mp4" type="video/ogg">
+            Your browser does not support HTML video.
+        </video>
+        <button onclick="videoPlayPause()">Play/Pause</button>
+        <button onclick="videoMakeBig()">Big</button>
+        <button onclick="videoMakeSmall()">Small</button>
+        <button onclick="videoMakeNormal()">Normal</button>
+    </div>
 
     <h2>HTML YouTube Videos</h2>
-    <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allowfullscreen></iframe>
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0"
+        allowfullscreen></iframe>
 
     <h2>HTML Geolocation API</h2>
     <p>Click the button to get your coordinates.</p>
     <button onclick="getLocation()">Try It</button>
     <p id="demo"></p>
 
-    <div style="text-align:center">
-        <button onclick="playPause()">Play/Pause</button>
-        <button onclick="makeBig()">Big</button>
-        <button onclick="makeSmall()">Small</button>
-        <button onclick="makeNormal()">Normal</button>
-    </div>
-
     <script>
+        var audio = document.getElementById("audio1");
         var video = document.getElementById("video1");
 
-        function playPause() {
+        function audioPlayPause() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function audioMakeBig() {
+            audio.width = 640;
+        }
+
+        function audioMakeSmall() {
+            audio.width = 420;
+        }
+
+        function audioMakeNormal() {
+            audio.width = 560;
+        }
+
+        function videoPlayPause() {
             if (video.paused) {
                 video.play();
             } else {
@@ -47,15 +76,15 @@
             }
         }
 
-        function makeBig() {
+        function videoMakeBig() {
             video.width = 640;
         }
 
-        function makeSmall() {
+        function videoMakeSmall() {
             video.width = 420;
         }
 
-        function makeNormal() {
+        function videoMakeNormal() {
             video.width = 560;
         }
 
@@ -72,4 +101,5 @@
         }
     </script>
 </body>
+
 </html>
